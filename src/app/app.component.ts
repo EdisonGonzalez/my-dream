@@ -1,4 +1,6 @@
+import { ApiserviceService } from './services/apiservice.service';
 import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-dream-app';
+
+  constructor( public ser: ApiserviceService) {
+    setInterval(() => {
+      console.log('app' + this.ser.name);
+    }, 10000);
+  }
 }

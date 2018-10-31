@@ -1,0 +1,82 @@
+<!--
+<p>
+  home works! {{mostrar}}
+</p>
+<button (click)="num()">Numeros</button>
+<form>
+  nombre
+  <input type="text" (input)="cambioInput()" [(ngModel)]="name" name="name">
+
+-->
+<!--<input [(ngModel)]="resultado" name="resultado">-->
+
+<!--
+  <textarea> {{resultado}} </textarea>
+  <input type="text" (input)="validarNum()" [(ngModel)]="num" name="num">
+  <textarea> {{numeroResult}} </textarea>
+</form>
+<div *ngIf="name == 'Edison'">
+  <a>
+    Alerta
+  </a>
+  {{numeroResult}}
+</div>
+
+<p *ngFor="let i of vec">{{i.nombre}} {{i.apellido}}</p>
+
+<div *ngFor="let i of vec; let j = index">
+  <input type="text" (input)="validarNum()" [(ngModel)]="values[j]" name="num{{j}}">
+  {{values[j]}}
+</div>
+-->
+
+<mat-toolbar>Formulario</mat-toolbar>
+
+<form [formGroup]="formReactive">
+  <div class="form-group col-md-6">
+    <label for="inputIdentificacion">Identificación</label>
+    <input type="number" formControlName="id" class="form-control" id="inputIdentificacion" placeholder="Ingrese su ID">
+  </div>
+  <div formGroupName="name">
+    <div class="form-group col-md-6">
+      <label for="inputNombre">Nombre</label>
+      <input type="text" formControlName="nombre" class="form-control" id="inputNombre" placeholder="Nombre">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="inputApellido">Apellido</label>
+      <input type="text" formControlName="apellido" class="form-control" id="inputApellido" placeholder="Apellido">
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputCorreo">Correo</label>
+    <input type="text" formControlName="email" class="form-control" id="inputCorreo" placeholder="Correo">
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputTelefono">Telefono</label>
+    <input type="text" formControlName="phone" class="form-control" id="inputTelefono" placeholder="Telefono">
+
+    <div *ngIf="formReactive.get('phone').invalid && formReactive.get('phone').touched">
+      <span *ngIf="formReactive.get('phone').hasError('pattern')">
+        Patron no esta correcto
+      </span>
+      <span *ngIf="formReactive.get('phone').hasError('required')">
+        Patron Requerido
+      </span>
+    </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="inputNombreTelefono">Nombre Telefono</label>
+    <input type="text" formControlName="phoneName" class="form-control" id="inputNombreTelefono" placeholder="Nombre Telefono">
+  </div>
+  <div class="form-group col-md-6">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!formReactive.valid" >Enviar</button>
+    <button type="submit" class="btn btn-primary">Listar</button>
+  </div>
+</form>
+<div>{{formReactive.value | json}}</div>
